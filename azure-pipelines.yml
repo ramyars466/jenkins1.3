@@ -21,8 +21,12 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean test package'
 
-- task: PublishBuildArtifacts@1
+- task: AzureRmWebAppDeployment@5
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1 (92991871-4a72-4d07-b519-2649a379a660)'
+    appType: 'webApp'
+    WebAppName: 'ramya-devops-webapp1'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+
